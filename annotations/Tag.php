@@ -29,8 +29,11 @@ class Tag
         } else {
             throw new \InvalidArgumentException('Require array or object');
         }
-        $this->parseText();
-        $this->parseData();
+        if ($this->requiredTag && ($this->requiredTag !== $this->tag)) {
+            throw new \InvalidArgumentException('Require @'.$this->requiredTag.', but @'.$this->tag.' given');
+        }
+        $this->parseText($this->text);
+        $this->parseData($this->data);
     }
 
     /**
@@ -66,18 +69,27 @@ class Tag
     /**
      * Parses the annotation text
      * For override
+     *
+     * @param string $text
      */
-    protected function parseText()
+    protected function parseText($text)
     {
     }
 
     /**
      * Parses the annotation data
      * For override
+     *
+     * @param string|null $data
      */
-    protected function parseData()
+    protected function parseData($data)
     {
     }
+
+    /**
+     * @var string
+     */
+    protected $requiredTag;
 
     /**
      * The annotation tag
