@@ -73,6 +73,19 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::getTitle
+     */
+    public function testGetTitle()
+    {
+        $block = new Block($this->fullComment);
+        $this->assertSame('This is title of the block', $block->getTitle());
+        $block2 = new Block('/** @source */');
+        $this->assertSame(null, $block2->getTitle());
+        $block3 = new Block('/** Title @source */');
+        $this->assertSame('Title @source', $block3->getTitle());
+    }
+
+    /**
      * @param string $file
      * @return string
      */

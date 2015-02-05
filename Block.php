@@ -48,12 +48,16 @@ class Block
     /**
      * Returns a text part of the comment (before an annotation part)
      *
+     * @param bool $asArray [optional]
      * @return string
      */
-    public function getPartText()
+    public function getPartText($asArray = false)
     {
         if ($this->partText === null) {
             $this->splitParts();
+        }
+        if ($asArray) {
+            return $this->partText;
         }
         return implode("\n", $this->partText);
     }
@@ -61,14 +65,36 @@ class Block
     /**
      * Returns the annotations text
      *
+     * @param bool $asArray [optional]
      * @return string
      */
-    public function getPartAnnotation()
+    public function getPartAnnotation($asArray = false)
     {
         if ($this->partText === null) {
             $this->splitParts();
         }
+        if ($asArray) {
+            return $this->partAnnotation;
+        }
         return implode("\n", $this->partAnnotation);
+    }
+
+    /**
+     * Returns the title of the block
+     *
+     * @return string|null
+     */
+    public function getTitle()
+    {
+        if ($this->title === false) {
+            $partText = $this->getPartText(true);
+            if (empty($partText)) {
+                $this->title = null;
+            } else {
+                $this->title = $partText[0];
+            }
+        }
+        return $this->title;
     }
 
     /**
@@ -114,4 +140,11 @@ class Block
      * @var array
      */
     private $partAnnotation;
+
+    /**
+     * The title of the block (FALSE - is not loaded)
+     *
+     * @var string|null|bool
+     */
+    private $title = false;
 }
