@@ -7,6 +7,8 @@
 namespace axy\phpcode\phpdoc;
 
 use axy\phpcode\phpdoc\helpers\Normalizer;
+use axy\phpcode\phpdoc\annotations\Parser;
+use axy\phpcode\phpdoc\annotations\Tag;
 
 /**
  * The PHPDoc-block class
@@ -117,6 +119,23 @@ class Block
     }
 
     /**
+     * Returns the annotations list
+     *
+     * @return \axy\phpcode\phpdoc\annotations\Tag[]
+     */
+    public function getAnnotations()
+    {
+        if ($this->annotations === null) {
+            $partAnnotation = $this->getPartAnnotation(true);
+            $this->annotations = [];
+            foreach (Parser::parseAnnotationBlock($partAnnotation) as $blank) {
+                $this->annotations[] = new Tag($blank);
+            }
+        }
+        return $this->annotations;
+    }
+
+    /**
      * Splits the comment to a text part and an annotation part
      */
     private function splitParts()
@@ -137,40 +156,45 @@ class Block
      *
      * @var string
      */
-    private $original;
+    protected $original;
 
     /**
      * The lines of the normalized text
      *
      * @var array
      */
-    private $lines;
+    protected $lines;
 
     /**
      * The lines of the text part
      *
      * @var array
      */
-    private $partText;
+    protected $partText;
 
     /**
      * The lines of the annotation part
      *
      * @var array
      */
-    private $partAnnotation;
+    protected $partAnnotation;
 
     /**
      * The title of the block (FALSE - is not loaded)
      *
      * @var string|null|bool
      */
-    private $title = false;
+    protected $title = false;
 
     /**
      * The description of the block (FALSE - is not loaded)
      *
      * @var string|null|bool
      */
-    private $description = false;
+    protected $description = false;
+
+    /**
+     * @var array
+     */
+    protected $annotations;
 }

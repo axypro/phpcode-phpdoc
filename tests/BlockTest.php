@@ -100,6 +100,39 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::getAnnotations
+     */
+    public function testGetAnnotations()
+    {
+        $block = new Block($this->fullComment);
+        $annotations = $block->getAnnotations();
+        $expectedList = [
+            [
+                'tag' => 'param',
+                'text' => "int \$one\n       a first argument",
+            ],
+            [
+                'tag' => 'param',
+                'text' => "(int|string) \$two [optional]\n       a second argument",
+            ],
+            [
+                'tag' => 'return',
+                'text' => "int\n        the result",
+            ],
+        ];
+        $this->assertInternalType('array', $annotations);
+        $this->assertCount(count($expectedList), $annotations);
+        foreach ($expectedList as $i => $expected) {
+            $this->assertArrayHasKey($i, $annotations);
+            $tag = $annotations[$i];
+            $this->assertInstanceOf('axy\phpcode\phpdoc\annotations\Tag', $tag);
+            $this->assertSame($expected['tag'], $tag->getTag());
+            $this->assertSame($expected['text'], $tag->getText());
+            $this->assertNull($tag->getData());
+        }
+    }
+
+    /**
      * @param string $file
      * @return string
      */
