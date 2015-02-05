@@ -21,14 +21,13 @@ class TagBaseVar extends TagBaseTyped
         return $this->name;
     }
 
-
     /**
      * {@inheritdoc}
      */
     protected function parseText($text)
     {
         parent::parseText($text);
-        if (preg_match('/^\$(\S+)(.*?)$/', $this->description, $matches)) {
+        if (preg_match('/^\$(\S+)(.*?)$/s', $this->description, $matches)) {
             $this->name = $matches[1];
             $this->description = trim($matches[2]);
             if ($this->description === '') {
