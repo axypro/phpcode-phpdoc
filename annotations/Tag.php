@@ -29,9 +29,7 @@ class Tag
         } else {
             throw new \InvalidArgumentException('Require array or object');
         }
-        if ($this->requiredTag && ($this->requiredTag !== $this->tag)) {
-            throw new \InvalidArgumentException('Require @'.$this->requiredTag.', but @'.$this->tag.' given');
-        }
+        $this->checkTag();
         $this->parseText($this->text);
         $this->parseData($this->data);
     }
@@ -84,6 +82,28 @@ class Tag
      */
     protected function parseData($data)
     {
+    }
+
+    /**
+     * @throws \InvalidArgumentException
+     */
+    private function checkTag()
+    {
+        if ($this->requiredTag === null) {
+            return;
+        }
+        if (is_array($this->requiredTag)) {
+            if (in_array($this->tag, $this->requiredTag)) {
+                return;
+            }
+            $req = '('.implode('|', $this->requiredTag).')';
+        } else {
+            if ($this->requiredTag === $this->tag) {
+                return;
+            }
+            $req = $this->requiredTag;
+        }
+        throw new \InvalidArgumentException('Require @'.$req.', but @'.$this->tag.' given');
     }
 
     /**
