@@ -7,12 +7,12 @@
 namespace axy\phpcode\phpdoc\annotations;
 
 /**
- * Tag "return"
+ * Tag "var"
  */
-class TagReturn extends TagBaseTyped
+class TagVar extends TagBaseVar
 {
     /**
      * {@inheritdoc}
      */
-    protected $requiredTag = 'return';
+    protected $requiredTag = 'var';
 }
