@@ -98,6 +98,25 @@ class Block
     }
 
     /**
+     * Returns the description of the block
+     *
+     * @return string|null
+     */
+    public function getDescription()
+    {
+        if ($this->description === false) {
+            $partText = $this->getPartText(true);
+            $count = count($partText);
+            if ($count > 1) {
+                $this->description = trim(implode("\n", array_slice($partText, 1)));
+            } else {
+                $this->description = null;
+            }
+        }
+        return $this->description;
+    }
+
+    /**
      * Splits the comment to a text part and an annotation part
      */
     private function splitParts()
@@ -147,4 +166,11 @@ class Block
      * @var string|null|bool
      */
     private $title = false;
+
+    /**
+     * The description of the block (FALSE - is not loaded)
+     *
+     * @var string|null|bool
+     */
+    private $description = false;
 }

@@ -86,6 +86,20 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * covers ::getDescription
+     */
+    public function testGetDescription()
+    {
+        $block = new Block($this->fullComment);
+        $expected = "This is description.\nMultiline and contains inline tags ({@see example}).";
+        $this->assertSame($expected, $block->getDescription());
+        $block2 = new Block('/** @source */');
+        $this->assertSame(null, $block2->getDescription());
+        $block3 = new Block('/** Title @source */');
+        $this->assertSame(null, $block3->getDescription());
+    }
+
+    /**
      * @param string $file
      * @return string
      */
