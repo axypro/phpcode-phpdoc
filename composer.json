@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "axy\\phpcode\\phpdoc": ""
+            "axy\\phpcode\\phpdoc\\": ""
         }
     },
     "target-dir": ""
