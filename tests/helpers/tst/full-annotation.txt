@@ -1,0 +1,6 @@
+@param int $one
+       a first argument
+@param (int|string) $two [optional]
+       a second argument
+@return int
+        the result

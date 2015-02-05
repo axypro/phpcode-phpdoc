@@ -1,0 +1,4 @@
+This is title of the block
+
+This is description.
+Multiline and contains inline tags ({@see example}).
