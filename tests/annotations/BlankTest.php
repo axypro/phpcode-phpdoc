@@ -114,7 +114,12 @@ class BlankTest extends \PHPUnit_Framework_TestCase
     {
         $blank = new Blank('tag', 'one');
         $blank->appendLine('  two');
+        $blank->appendLine('');
         $blank->appendLine('three');
-        $this->assertSame("one\n  two\nthree", $blank->text);
+        $blank->appendLine('');
+        $blank->appendLine('');
+        $this->assertSame("one\n  two\n\nthree\n\n", $blank->text);
+        $blank->stop();
+        $this->assertSame("one\n  two\n\nthree", $blank->text);
     }
 }

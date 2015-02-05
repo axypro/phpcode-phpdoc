@@ -69,4 +69,12 @@ class Blank
     {
         $this->text .= "\n".$line;
     }
+
+    /**
+     * Text ended
+     */
+    public function stop()
+    {
+        $this->text = trim($this->text);
+    }
 }
