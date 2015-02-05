@@ -9,7 +9,7 @@ namespace axy\phpcode\phpdoc\annotations;
 /**
  * Tag "author"
  */
-class TagReturn extends TagBaseVar
+class TagReturn extends TagBaseTyped
 {
     /**
      * {@inheritdoc}

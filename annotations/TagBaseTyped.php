@@ -9,7 +9,7 @@ namespace axy\phpcode\phpdoc\annotations;
 /**
  * The base class for tags such as var, param, return, property[-*]
  */
-class TagBaseVar extends Tag
+class TagBaseTyped extends Tag
 {
     /**
      * Returns the list of allowed types
