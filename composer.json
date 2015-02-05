@@ -1,0 +1,26 @@
+{
+    "name": "axy/phpcode-phpdoc",
+    "type": "library",
+    "description": "Analysis of phpdoc blocks",
+    "keywords": [
+        "PHPDoc",
+        "Annotations"
+    ],
+    "homepage": "https://github.com/axypro/phpcode-phpdoc",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oleg Grigoriev",
+            "email": "go.vasac@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "axy\\phpcode\\phpdoc": ""
+        }
+    },
+    "target-dir": ""
+}
