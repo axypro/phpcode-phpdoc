@@ -6,33 +6,33 @@
 
 namespace axy\phpcode\phpdoc\tests;
 
-use axy\phpcode\phpdoc\annotations\TagAuthor;
+use axy\phpcode\phpdoc\annotations\TagDeprecated;
 use axy\phpcode\phpdoc\annotations\Blank;
 
 /**
- * coversDefaultClass axy\phpcode\phpdoc\annotations\TagAuthor
+ * coversDefaultClass axy\phpcode\phpdoc\annotations\TagDeprecated
  */
-class TagAuthorTest extends \PHPUnit_Framework_TestCase
+class TagDeprecatedTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * covers ::getName
-     * covers ::getEmail
+     * covers ::getVersion
+     * covers ::getDescription
      * @dataProvider providerTag
      * @param string $line
-     * @param string $name
-     * @param string $email
+     * @param string $version
+     * @param string $description
      * @param bool $exception [optional]
      */
-    public function testTag($line, $name, $email, $exception = false)
+    public function testTag($line, $version, $description, $exception = false)
     {
         $blank = Blank::seekInLine($line);
         if ($exception) {
             $this->setExpectedException('InvalidArgumentException');
         }
-        $tag = new TagAuthor($blank);
+        $tag = new TagDeprecated($blank);
         if (!$exception) {
-            $this->assertSame($name, $tag->getName());
-            $this->assertSame($email, $tag->getEmail());
+            $this->assertSame($version, $tag->getVersion());
+            $this->assertSame($description, $tag->getDescription());
         }
     }
 
@@ -43,27 +43,27 @@ class TagAuthorTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                '@author Vasa Pupkin <vasa@pupkin.loc>',
-                'Vasa Pupkin',
-                'vasa@pupkin.loc',
+                '@deprecated 1.0-rc because that',
+                '1.0-rc',
+                'because that',
             ],
             [
-                '@author Vasa Pupkin',
-                'Vasa Pupkin',
+                '@deprecated 1.0-rc ',
+                '1.0-rc',
                 null,
             ],
             [
-                '@author <vasa@pupkin.loc>',
+                '@deprecated  because that',
                 null,
-                'vasa@pupkin.loc',
+                'because that',
             ],
             [
-                '@author  ',
+                '@deprecated',
                 null,
                 null,
             ],
             [
-                '@link Vasa Pupkin',
+                '@link 11',
                 null,
                 null,
                 true,

@@ -50,6 +50,9 @@ class TagAuthor extends Tag
         }
     }
 
+    /**
+     * {@inheritdoc}
+     */
     protected $requiredTag = 'author';
 
     /**
