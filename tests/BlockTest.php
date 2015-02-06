@@ -101,25 +101,14 @@ class BlockTest extends \PHPUnit_Framework_TestCase
 
     /**
      * covers ::getAnnotations
+     * @dataProvider providerGetAnnotations
+     * @param mixed $filter
+     * @param array $expectedList
      */
-    public function testGetAnnotations()
+    public function testGetAnnotations($filter, $expectedList)
     {
         $block = new Block($this->fullComment);
-        $annotations = $block->getAnnotations();
-        $expectedList = [
-            [
-                'tag' => 'param',
-                'text' => "int \$one\n       a first argument",
-            ],
-            [
-                'tag' => 'param',
-                'text' => "(int|string) \$two [optional]\n       a second argument",
-            ],
-            [
-                'tag' => 'return',
-                'text' => "int\n        the result",
-            ],
-        ];
+        $annotations = $block->getAnnotations($filter);
         $this->assertInternalType('array', $annotations);
         $this->assertCount(count($expectedList), $annotations);
         foreach ($expectedList as $i => $expected) {
@@ -130,6 +119,32 @@ class BlockTest extends \PHPUnit_Framework_TestCase
             $this->assertSame($expected['text'], $tag->getText());
             $this->assertNull($tag->getData());
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function providerGetAnnotations()
+    {
+        $p1 = [
+            'tag' => 'param',
+            'text' => "int \$one\n       a first argument",
+        ];
+        $p2 = [
+            'tag' => 'param',
+            'text' => "(int|string) \$two [optional]\n       a second argument",
+        ];
+        $r = [
+            'tag' => 'return',
+            'text' => "int\n        the result",
+        ];
+        return [
+            [null, [$p1, $p2, $r]],
+            ['example', []],
+            ['param', [$p1, $p2]],
+            ['return', [$r]],
+            [['return', 'param', 'var'], [$p1, $p2, $r]],
+        ];
     }
 
     /**

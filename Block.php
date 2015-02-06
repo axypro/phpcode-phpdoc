@@ -121,9 +121,11 @@ class Block
     /**
      * Returns the annotations list
      *
+     * @param array|string|null $filter [optional]
+     *        a tag or a tags list of required annotations
      * @return \axy\phpcode\phpdoc\annotations\Tag[]
      */
-    public function getAnnotations()
+    public function getAnnotations($filter = null)
     {
         if ($this->annotations === null) {
             $partAnnotation = $this->getPartAnnotation(true);
@@ -132,7 +134,19 @@ class Block
                 $this->annotations[] = new Tag($blank);
             }
         }
-        return $this->annotations;
+        if ($filter === null) {
+            return $this->annotations;
+        }
+        $result = [];
+        if (!is_array($filter)) {
+            $filter = [$filter];
+        }
+        foreach ($this->annotations as $annotation) {
+            if (in_array($annotation->getTag(), $filter)) {
+                $result[] = $annotation;
+            }
+        }
+        return $result;
     }
 
     /**
