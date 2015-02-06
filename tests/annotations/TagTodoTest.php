@@ -6,32 +6,32 @@
 
 namespace axy\phpcode\phpdoc\tests;
 
-use axy\phpcode\phpdoc\annotations\TagLink;
+use axy\phpcode\phpdoc\annotations\TagTodo;
 use axy\phpcode\phpdoc\annotations\Blank;
 
 /**
- * coversDefaultClass axy\phpcode\phpdoc\annotations\TagLink
+ * coversDefaultClass axy\phpcode\phpdoc\annotations\TagTodo
  */
-class TagLinkTest extends \PHPUnit_Framework_TestCase
+class TagTodoTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * covers ::getURI
+     * covers ::getUser
      * covers ::getDescription
      * @dataProvider providerTag
      * @param string $line
-     * @param string $uri
+     * @param string $user
      * @param string $description
      * @param bool $exception [optional]
      */
-    public function testTag($line, $uri, $description, $exception = false)
+    public function testTag($line, $user, $description, $exception = false)
     {
         $blank = Blank::seekInLine($line);
         if ($exception) {
             $this->setExpectedException('InvalidArgumentException');
         }
-        $tag = new TagLink($blank);
+        $tag = new TagTodo($blank);
         if (!$exception) {
-            $this->assertSame($uri, $tag->getURI());
+            $this->assertSame($user, $tag->getUser());
             $this->assertSame($description, $tag->getDescription());
         }
     }
@@ -43,22 +43,27 @@ class TagLinkTest extends \PHPUnit_Framework_TestCase
     {
         return [
             [
-                '@link http://example.loc/doc The documentation',
-                'http://example.loc/doc',
-                'The documentation',
+                '@todo {Nick} Fix it!',
+                'Nick',
+                'Fix it!',
             ],
             [
-                '@link file:///file.txt',
-                'file:///file.txt',
+                '@todo Nick Fix it!',
+                null,
+                'Nick Fix it!',
+            ],
+            [
+                '@todo {} Fix it!',
+                null,
+                'Fix it!',
+            ],
+            [
+                '@todo { Nick }',
+                'Nick',
                 null,
             ],
             [
-                '@link The documentation',
-                null,
-                'The documentation',
-            ],
-            [
-                '@link',
+                '@todo',
                 null,
                 null,
             ],
