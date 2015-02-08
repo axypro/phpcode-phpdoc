@@ -1,0 +1,13 @@
+/**
+ * This is method
+ *
+ * The method do nothing
+ *
+ * @deprecated 1.0
+ * @param string $x
+ *        a first argument
+ * @param string $y [optional]
+ *        a second argument
+ * @return string
+ *         a result
+ */

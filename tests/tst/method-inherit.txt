@@ -1,0 +1,4 @@
+/**
+ * {@inheritdoc} ok
+ * @throws Exception
+ */

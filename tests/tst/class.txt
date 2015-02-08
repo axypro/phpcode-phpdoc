@@ -1,0 +1,15 @@
+/**
+ * This is doc of class
+ *
+ * @author Me <me@mail.loc>
+ * @example $x = new MyClass()
+ * @link http://example.loc/doc doc
+ * @link http://example.loc/repo.git repo
+ * @todo {John} refactor it
+ * @todo check John
+ * @property-read string $one
+ *                this is one
+ * @property-write string $two
+ *                this is two
+ * @property string $three
+ */
