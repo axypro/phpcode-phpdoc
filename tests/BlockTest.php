@@ -148,6 +148,30 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @dataProvider providerEmptyTitle
+     * @param string $comment
+     */
+    public function testEmptyTitle($comment)
+    {
+        $block = new Block($comment);
+        $this->assertNull($block->getTitle());
+    }
+
+    /**
+     * @return array
+     */
+    public function providerEmptyTitle()
+    {
+        return [
+            [''],
+            ['/**  */'],
+            ['/** @source */'],
+            ['/** {@inheritdoc} */'],
+            ["/**\n * {@inheritdoc}\n * Text\n */"],
+        ];
+    }
+
+    /**
      * @param string $file
      * @return string
      */
