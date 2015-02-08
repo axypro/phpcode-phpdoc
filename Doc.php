@@ -92,14 +92,15 @@ class Doc extends Block
     }
 
     /**
-     * @param string $tag
+     * @param string|array $tag
      * @param string $tagClass
      * @param bool $single [optional]
      * @return \axy\phpcode\phpdoc\annotations\Tag|\axy\phpcode\phpdoc\annotations\Tag[]|null
      */
     protected function find($tag, $tagClass, $single = false)
     {
-        if (!array_key_exists($tag, $this->cacheFind)) {
+        $key = is_array($tag) ? $tag[0] : $tag;
+        if (!array_key_exists($key, $this->cacheFind)) {
             $result = [];
             $cn = __NAMESPACE__.'\\annotations\\'.$tagClass;
             foreach ($this->getAnnotations($tag) as $t) {
@@ -108,9 +109,9 @@ class Doc extends Block
             if ($single) {
                 $result = empty($result) ? null : $result[0];
             }
-            $this->cacheFind[$tag] = $result;
+            $this->cacheFind[$key] = $result;
         }
-        return $this->cacheFind[$tag];
+        return $this->cacheFind[$key];
     }
 
     /**
