@@ -171,6 +171,16 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
+    public function testNoEmptyLine()
+    {
+        $block = new Block("/**\n * The title\n * @var string\n */");
+        $this->assertEquals(['The title'], $block->getPartText(true));
+        $this->assertEquals(['@var string'], $block->getPartAnnotation(true));
+        $block2 = new Block("/** The title */ */");
+        $this->assertEquals(['The title'], $block2->getPartText(true));
+        $this->assertEquals([], $block2->getPartAnnotation(true));
+    }
+
     /**
      * @param string $file
      * @return string

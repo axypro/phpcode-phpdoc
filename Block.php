@@ -157,7 +157,7 @@ class Block
         foreach ($this->lines as $i => $line) {
             if ((substr($line, 0, 1) === '@') || (substr($line, 0, 13) === '{@inheritdoc}')) {
                 if ($i > 0) {
-                    $this->partText = Normalizer::trimLinesEnd(array_slice($this->lines, 0, $i - 1));
+                    $this->partText = Normalizer::trimLinesEnd(array_slice($this->lines, 0, $i));
                 } else {
                     $this->partText = [];
                 }
