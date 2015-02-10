@@ -13,7 +13,7 @@ For example:
 ```
 
 For first author `$author->getEmail()` returns `john@mail.loc`.
-For second author case returns `NULL`.
+For second author returns `NULL`.
 
 ## `Tag`
 
