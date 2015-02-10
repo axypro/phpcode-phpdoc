@@ -21,6 +21,5 @@
         "psr-4": {
             "axy\\phpcode\\phpdoc\\": ""
         }
-    },
-    "target-dir": ""
+    }
 }
