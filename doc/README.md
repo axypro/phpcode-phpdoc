@@ -4,6 +4,7 @@
 * Composer: [axypro/phpcode-phpdoc](https://packagist.org/packages/axy/phpcode-phpdoc)
 
 The library is designed to parse phpdoc-blocks and extraction of annotations and other information.
+Is used for internal purposes, may differ slightly from phpdoc.
 
 * [Block format](block-format.md)
 * [Annotation format](annotation-format.md)

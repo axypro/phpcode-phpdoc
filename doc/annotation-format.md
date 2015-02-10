@@ -12,6 +12,8 @@ Format:
 @tag(data) text
 ```
 
+Example:
+
 ```
 @param string $x
 ```

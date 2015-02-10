@@ -84,7 +84,7 @@ Take into consideration annotation in the line begin only (given the spaces).
 
 There is only one annotation: `@param`.
 `@example` is the part of the description.
-`@see` is the part of the `@param` value.
+`@see` is the part of the `@param` content.
 
 Inline annotation (such as `{@see ..}`) are not taken into consideration.
 Except `{@inheritdoc}` in the beginning of the line.
@@ -107,7 +107,7 @@ The description can be multiline.
 
 If the first line of the block is not an annotation then this is the title.
 All the following lines (down to the first annotation) are description.
-The description can be separated by empty lines, or maybe not.
+The description maybe separated by empty lines, or maybe not.
 
 ```php
 /**
@@ -118,5 +118,5 @@ The description can be separated by empty lines, or maybe not.
 ```
 
 The format of titles and descriptions is indifferent to the library.
-It can plain text, markdown with inline annotations and etc.
+It may be plain text, markdown with inline annotations and etc.
 The library returns plain text.
