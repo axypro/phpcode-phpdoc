@@ -15,4 +15,5 @@ Is used for internal purposes, may differ slightly from phpdoc.
 * [Block](Block.md)
 * [Doc](Doc.md)
 * [DocClass](DocClass.md)
+* [DocMethod](DocMethod.md)
 * [DocVar](DocVar.md)
