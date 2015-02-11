@@ -6,8 +6,6 @@
 
 namespace axy\phpcode\phpdoc\annotations;
 
-use axy\phpcode\phpdoc\helpers\Uri;
-
 /**
  * Tag "todo"
  */

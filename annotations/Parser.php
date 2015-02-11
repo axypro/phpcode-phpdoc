@@ -25,6 +25,7 @@ class Parser
             $block = explode("\n", $block);
         }
         $blanks = [];
+        /** @var \axy\phpcode\phpdoc\annotations\Blank $current */
         $current = null;
         foreach ($block as $line) {
             $next = Blank::seekInLine($line);

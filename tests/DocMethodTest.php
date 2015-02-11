@@ -11,7 +11,7 @@ use axy\phpcode\phpdoc\DocMethod;
 /**
  * coversDefaultClass axy\phpcode\phpdoc\DocMethod
  */
-class DocMethodest extends \PHPUnit_Framework_TestCase
+class DocMethodTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * covers ::getParams

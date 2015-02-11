@@ -14,7 +14,7 @@ class DocMethod extends Doc
     /**
      * Returns the list of param annotations
      *
-     * @return \axy\phpcode\phpdoc\annotations\TagParams[]
+     * @return \axy\phpcode\phpdoc\annotations\TagParam[]
      */
     public function getParams()
     {

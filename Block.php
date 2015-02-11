@@ -212,7 +212,7 @@ class Block
     protected $description = false;
 
     /**
-     * @var array
+     * @var \axy\phpcode\phpdoc\annotations\Tag[]
      */
     protected $annotations;
 }
