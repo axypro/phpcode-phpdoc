@@ -1,4 +1,4 @@
-### dev-master
+### 0.1.0
 
 * Block: The PHPDoc-block class
 * Doc: Doc block of some item (class, method or var)
