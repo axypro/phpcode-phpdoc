@@ -10,6 +10,7 @@ use axy\phpcode\phpdoc\Block;
 
 /**
  * coversDefaultClass axy\phpcode\phpdoc\Block
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class BlockTest extends \PHPUnit_Framework_TestCase
 {
