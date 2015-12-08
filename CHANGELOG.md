@@ -1,6 +1,7 @@
 ### dev-master
 
-* Travis & Coveralls
+* Travis & Coveralls.
+* Exclude tests, docs and etc from the composer package archive
 
 ### 0.1.0
 
