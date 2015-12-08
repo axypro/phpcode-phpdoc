@@ -40,7 +40,10 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     {
         $block = new Block($this->fullComment);
         $expected = $this->getFileContent('full-normalized');
-        $this->assertSame($expected, $block->getNormalizedText());
+        $actual = $block->getNormalizedText();
+        $this->fixLN($expected);
+        $this->fixLN($actual);
+        $this->assertSame($expected, $actual);
         $block2 = new Block('/** @source */');
         $this->assertSame('@source', $block2->getNormalizedText());
     }
@@ -52,7 +55,10 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     {
         $block = new Block($this->fullComment);
         $expected = $this->getFileContent('full-text');
-        $this->assertSame($expected, $block->getPartText());
+        $actual = $block->getPartText();
+        $expected = $this->fixLN($expected);
+        $actual = $this->fixLN($actual);
+        $this->assertSame($expected, $actual);
         $block2 = new Block('/** @source */');
         $this->assertSame('', $block2->getPartText());
         $block3 = new Block('/** source */');
@@ -66,7 +72,10 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     {
         $block = new Block($this->fullComment);
         $expected = $this->getFileContent('full-annotation');
-        $this->assertSame($expected, $block->getPartAnnotation());
+        $actual = $block->getPartAnnotation();
+        $expected = $this->fixLN($expected);
+        $actual = $this->fixLN($actual);
+        $this->assertSame($expected, $actual);
         $block2 = new Block('/** @source */');
         $this->assertSame('@source', $block2->getPartAnnotation());
         $block3 = new Block('/** source */');
@@ -93,7 +102,8 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     {
         $block = new Block($this->fullComment);
         $expected = "This is description.\nMultiline and contains inline tags ({@see example}).";
-        $this->assertSame($expected, $block->getDescription());
+        $actual = $block->getDescription();
+        $this->assertSame($expected, $actual);
         $block2 = new Block('/** @source */');
         $this->assertSame(null, $block2->getDescription());
         $block3 = new Block('/** Title @source */');
@@ -189,6 +199,15 @@ class BlockTest extends \PHPUnit_Framework_TestCase
     private function getFileContent($file)
     {
         return trim(file_get_contents(__DIR__.'/helpers/tst/'.$file.'.txt'));
+    }
+
+    /**
+     * @param string $str
+     * @return string
+     */
+    private function fixLN($str)
+    {
+        return str_replace("\r\n", "\n", $str);
     }
 
     /**

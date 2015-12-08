@@ -2,6 +2,7 @@
 
 * Travis & Coveralls.
 * Exclude tests, docs and etc from the composer package archive
+* Fix tests for Windows line break.
 
 ### 0.1.0
 
