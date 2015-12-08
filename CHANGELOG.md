@@ -1,4 +1,4 @@
-### dev-master
+### 0.1.1 (08.12.2015)
 
 * Travis & Coveralls.
 * Exclude tests, docs and etc from the composer package archive
