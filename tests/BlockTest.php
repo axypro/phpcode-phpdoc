@@ -41,8 +41,8 @@ class BlockTest extends \PHPUnit_Framework_TestCase
         $block = new Block($this->fullComment);
         $expected = $this->getFileContent('full-normalized');
         $actual = $block->getNormalizedText();
-        $this->fixLN($expected);
-        $this->fixLN($actual);
+        $expected = $this->fixLN($expected);
+        $actual = $this->fixLN($actual);
         $this->assertSame($expected, $actual);
         $block2 = new Block('/** @source */');
         $this->assertSame('@source', $block2->getNormalizedText());
